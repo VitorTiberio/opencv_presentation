@@ -1,13 +1,13 @@
-## Developed by: Vitor Augusto Tiberio and Felipe Maitan ## 
 
-## Importing Packages ## 
+
+## Importando as Bibliotecas ## 
 
 import cv2 as cv
 import numpy as np 
 from scipy import interpolate
 import matplotlib.pyplot as plt
 
-## Defining functions ## 
+## Definindo as Funções ## 
 def image_plot(image):
     plt.figure(figsize=(5,5))
     plt.imshow(image, cmap = 'gray', vin = 0, vmax = 255)
@@ -88,5 +88,6 @@ if __name__ == "__main__":
     filtro12 = new_kernel(12)
     g1 = cv.filter2D(img_gray, -1, filtro12)
     cv.imwrite('images_with_filter/imagem_kernel_ones.png', g1)
+
 
     print('Terminei o processamento das imagens! =)')
