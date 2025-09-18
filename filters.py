@@ -37,6 +37,10 @@ def stylish(image):
     img_blur = cv.GaussianBlur(image, (5,5), 0, 0)
     style = cv.stylization(img_blur, sigma_s= 8, sigma_r= 0.1)
     return style 
+    
+def cinza(img):
+    img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    return img_gray
 
 def inverter(image):
     inv = cv.bitwise_not(image)
@@ -91,3 +95,4 @@ if __name__ == "__main__":
 
 
     print('Terminei o processamento das imagens! =)')
+
