@@ -1,4 +1,4 @@
-## Autore: Vitor Augusto Tibério - Eng. Elétrica 023 - Automação 
+## Autor: Vitor Augusto Tibério - Eng. Elétrica 023 - vitortiberio@usp.br
 
 ## Dependências para o programa: 
 # pip install cvzone 
@@ -45,6 +45,7 @@ while True:
 
     if cv.waitKey(1) & 0xFF == ord('q'):
         break 
+
 
 
 
