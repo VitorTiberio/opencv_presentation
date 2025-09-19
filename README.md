@@ -1,9 +1,9 @@
-## Instrução para utilização dos programas ## 
+# Instrução para utilização dos programas #
 
 ---
 
-# Lousa Mágica # 
+## Lousa Mágica ##
 
 ---
 
-# Câmera Mágica # 
+## Câmera Mágica ##
