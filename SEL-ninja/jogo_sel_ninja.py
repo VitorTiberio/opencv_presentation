@@ -79,8 +79,8 @@ camera = cv2.VideoCapture(0)
 # Carrega Ativos
 pasta = "imagens/"
 imgs_bons = [carregar_imagem(f"{pasta}{f}") for f in ['resistor.png', 'capacitor.png', 'led.png', 'transistor.png']]
-img_vilao = carregar_imagem(f"{pasta}curto_circuito.png", (90, 90))
-img_cursor = carregar_imagem(f"{pasta}ponta_de_prova.png", (100, 100))
+img_vilao = carregar_imagem(f"{pasta}sasel.png", (90, 90))
+img_cursor = carregar_imagem(f"{pasta}chave_fenda.png", (100, 100))
 
 # Variáveis de Estado
 itens = []
