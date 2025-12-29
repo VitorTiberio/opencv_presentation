@@ -10,7 +10,7 @@ Para a execução da lousa mágina, siga os seguintes passos:
 2) Instale as bibliotecas:
    ```
    pip install cvzone
-   pip install midiapipe
+   pip install mediapipe
    ```
 
 ---
