@@ -25,7 +25,13 @@ Para rodar este projeto, você precisará instalar as dependências abaixo. É r
 pip install "numpy<2"
 pip install opencv-python mediapipe pygame
 ```
-
+Em caso de problemas de "mediapipe has no atribute 'solutions'", execute os seguintes comandos no terminal do VSCode: 
+```bash
+pip uninstall mediapipe numpy opencv-python -y
+pip install "numpy<2"
+pip install opencv-python==4.8.0.76
+pip install mediapipe==0.10.11
+```
 ## 🧠 Lógica e Estrutura do Código
 
 O projeto foi estruturado de forma modular para facilitar a manutenção e garantir que o processamento da visão computacional não trave a interface gráfica do jogo.
