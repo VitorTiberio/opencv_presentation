@@ -5,7 +5,7 @@ Vitor Augusto Tibério - Estudante de Engenharia Elétrica - USP São Carlos
 
 ---
 
-Este repositório contém uma série de aplicações interativas desenvolvidas com **Python**, **OpenCV** e **MediaPipe** para apresentações do curso de Engenharia Elétrica (SEL) na USP São Carlos. O objetivo é demonstrar de forma lúdica conceitos de visão computacional, processamento de sinais e interação humano-computador.
+Este repositório contém uma série de aplicações interativas desenvolvidas com **Python**, **OpenCV** e **MediaPipe** para apresentações do curso de Engenharia Elétrica (SEL) da USP São Carlos. O objetivo é demonstrar de forma lúdica conceitos de visão computacional, processamento de sinais e interação humano-computador para a população, em feiras, amostras e eventos de tecnologia!
 
 ---
 
