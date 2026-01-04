@@ -1,7 +1,7 @@
 # OpenCV & Computer Vision: Projetos para demonstração de OpenCV ⚡
 
 ### Autores: 
-Vitor Augusto Tibério - Estudante de Engenharia Elétrica - USP São Carlos
+Vitor Augusto Tibério - Estudante de Engenharia Elétrica - USP São Carlos (vitortiberio@usp.br)
 
 ---
 
