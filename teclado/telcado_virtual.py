@@ -1,4 +1,5 @@
-## Autor: Vitor Augusto Tibério - Estudante de Engenharia Elétrica - USP São Carlos ## 
+## Autores: Vitor Augusto Tibério - Estudante de Engenharia Elétrica - USP São Carlos 
+#           João Pedro Alves - Estudante de Engenharia Elétrica - USP São Carlos ## 
 
 ## Importando as Bibliotecas ## 
 import cv2
@@ -20,6 +21,26 @@ def gerar_nota(frequencia, duracao=0.3, volume=0.5):
     fade = np.linspace(1.0, 0.0, n_samples)
     audio = (onda * fade * 32767).astype(np.int16)
     return np.column_stack((audio, audio))
+
+class NotaVisual:
+    def __init__(self, x, largura, cor):
+        self.x = x
+        self.largura = largura
+        self.y = 200  # Começa no mesmo y que as teclas
+        self.altura = 0
+        self.cor = cor
+        # Define se o dedo ainda está pressionando
+        self.ativa = True 
+
+    def atualizar(self, velocidade):
+         # Tecla sobe -> Y diminui
+        self.y -= velocidade
+        if self.ativa:
+            self.altura += velocidade
+
+    def desenhar(self, superficie):
+        # Desenho do retângulo arredondado da nota
+        pygame.draw.rect(superficie, self.cor, (self.x, self.y, self.largura, self.altura), border_radius=5)
 
 ## Código Principal ## 
 
@@ -48,6 +69,12 @@ largura_tecla = LARGURA // n_teclas
 # Chaves: 0 para a primeira mão, 1 para a segunda mão detectada
 maos_estado = {-1: -1, 0: -1, 1: -1} 
 
+# Lista para o programa "lembrar" das notas que já foram tocadas
+notas_em_exibicao = []
+
+notas_por_mao = {0: None, 1: None}
+VELOCIDADE_SUBIDA = 5
+
 clock = pygame.time.Clock()
 
 while True:
@@ -66,13 +93,13 @@ while True:
         pressionada = (i in maos_estado.values())
         cor = (200, 200, 200) if pressionada else (255, 255, 255)
         
-        rect = pygame.Rect(i * largura_tecla, 100, largura_tecla - 5, 400)
+        rect = pygame.Rect(i * largura_tecla, 200, largura_tecla - 5, 400)
         pygame.draw.rect(tela, cor, rect, border_radius=10)
         pygame.draw.rect(tela, (0, 0, 0), rect, 2, border_radius=10)
         
         fonte = pygame.font.SysFont("Consolas", 25, bold=True)
         txt = fonte.render(nomes_notas[i], True, (50, 50, 50))
-        tela.blit(txt, (i * largura_tecla + largura_tecla//4, 450))
+        tela.blit(txt, (i * largura_tecla + largura_tecla//4, 550))
 
     # Lógica de detecção (mãos simultâneas)
     teclas_ativas_neste_frame = {0: -1, 1: -1}
@@ -91,7 +118,7 @@ while True:
             pygame.draw.circle(tela, cor_cursor, (px, py), 15)
 
             # Verifica se o dedo está na área das teclas
-            if 100 < py < 500:
+            if 200 < py < 600:
                 indice_tecla = px // largura_tecla
                 if 0 <= indice_tecla < n_teclas:
                     teclas_ativas_neste_frame[idx] = indice_tecla
@@ -100,6 +127,33 @@ while True:
                     if teclas_ativas_neste_frame[idx] != maos_estado[idx]:
                         sons[indice_tecla].play()
                         maos_estado[idx] = indice_tecla
+                        
+                        if notas_por_mao[idx]:
+                            notas_por_mao[idx].ativa = False
+                        
+                        # Define a cor que subirá da nota de acordo com a mão
+                        cor_nota = (100, 200, 255) if idx == 0 else (255, 100, 100)
+
+                        nova_nota = NotaVisual(indice_tecla * largura_tecla + 5, largura_tecla - 15, cor_nota)
+                        notas_em_exibicao.append(nova_nota)
+                        notas_por_mao[idx] = nova_nota
+
+    # Se a mão saiu da tecla, a nota para de crescer
+    for idx in [0, 1]:
+        if teclas_ativas_neste_frame[idx] == -1:
+            if notas_por_mao[idx]:
+                notas_por_mao[idx].ativa = False
+                notas_por_mao[idx] = None
+            maos_estado[idx] = -1
+
+    # Rendenização das notas subindo
+    for nota in notas_em_exibicao[:]:  # Usamos [:] para poder remover itens da lista enquanto iteramos
+        nota.atualizar(VELOCIDADE_SUBIDA)
+        nota.desenhar(tela)
+        
+        # Remove notas que já sumiram da tela 
+        if nota.y + nota.altura < 0:
+            notas_em_exibicao.remove(nota)
 
     # Se a mão saiu de uma tecla ou da área, reseta o estado daquela mão
     for idx in [0, 1]:
