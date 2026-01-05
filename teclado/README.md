@@ -44,4 +44,5 @@ Para garantir que o som seja agradável, implementamos uma trava de estado:
 Para rodar o teclado, instale as dependências:
 
 ```bash
-pip install opencv-python mediapipe pygame numpy
+pip install opencv-python pygame numpy
+pip install mediapipe==0.10.9
