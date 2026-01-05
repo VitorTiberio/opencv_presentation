@@ -1,6 +1,10 @@
 # Teclado Visual: Polifonia por Visão Computacional 🎹⚡
 
-## Autores: Vitor Augusto Tibério - Estudante de Engenharia Elétrica - USP São Carlos  /  João Pedro Alves - Estudante de Engenharia Elétrica - USP São Carlos
+# Autores: 
+Vitor Augusto Tibério - Estudante de Engenharia Elétrica - USP São Carlos  
+João Pedro Alves - Estudante de Engenharia Elétrica - USP São Carlos
+
+---
 
 Este projeto transforma a webcam em um instrumento musical polifônico. Utilizando técnicas de visão computacional, o software identifica as mãos do usuário e mapeia a posição dos dedos para frequências sonoras específicas, permitindo tocar acordes e melodias no ar.
 
